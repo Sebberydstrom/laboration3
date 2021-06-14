@@ -1,26 +1,41 @@
+/*
+ * 
+ */
 package lab3NP.ServerGUI;
 
 import java.util.Observable;
 import java.util.Observer;
 import java.awt.Color;
 
-//Observerar UDPServer
+/**
+ * The Class GameModel.
+ */
 public class GameModel extends Observable implements Observer {
 
+	/** The s. */
 	private UDPServer s;
+	
+	/** The Constant SIZE. */
 	private final static int SIZE = 201;
+	
+	/** The buff. */
 	private Buffer buff;
+	
+	/** The in color. */
 	private String indata, inColor; // --(x, y, color)
+	
+	/** The xycolor. */
 	private XyColor xycolor;
+	
+	/** The y. */
 	private int x, y;
 
 	
-	
-	//allt nedanför gammalt.
-	//private final static int ME = 1;
-	//private int[][] board;
-	
-	
+	/**
+	 * Instantiates a new game model.
+	 *
+	 * @param s the s
+	 */
 	public GameModel(UDPServer s) {
 		this.s = s;
 		this.s.addObserver(this);
@@ -29,38 +44,37 @@ public class GameModel extends Observable implements Observer {
 		
 	}
 	
-//	public GameModel() {
-//		this.buff = new Buffer();
-//		this.indata = "3, 5, red";
-//		this.setIndata();
-		//this.board = new int[SIZE][SIZE];
 	
-//	}
-	
-	public void setIndata() {
-		
-		String x = this.indata.substring(0, 1);
-		String y = this.indata.substring(3, 4);
-		this.inColor = this.indata.substring(6);
-		this.x = Integer.valueOf(x);
-		this.y = Integer.valueOf(y);
-		this.saveIndata();
-		setChanged();			    //call update i Model.
-		notifyObservers();
-	}
-	
+	/**
+	 * Gets the x.
+	 *
+	 * @return the x
+	 */
 	public int getX() {
 		return this.x;
 	}
 	
+	/**
+	 * Gets the y.
+	 *
+	 * @return the y
+	 */
 	public int getY() {
 		return this.y;
 	}
 	
+	/**
+	 * Gets the color.
+	 *
+	 * @return the color
+	 */
 	public Color getColor() {
-		System.out.println(inColor);
-		switch(inColor) {
+	
 		
+		if(this.inColor != null) {
+			
+			switch(this.inColor) {
+			
 			case "red":
 				return Color.red;
 				
@@ -88,46 +102,67 @@ public class GameModel extends Observable implements Observer {
 			case "white":
 				return Color.white;
 				
+			case "yellow":
+				return Color.yellow;
+				
 			
 			default:
 				System.out.println("Wrong color");
 				return null;
+			}
+		} else {
+			return null;
 		}
+ 	
 	}
 	
+	/**
+	 * Save indata.
+	 */
 	public void saveIndata() {
-		if(buff.checkKey(new PairHash(x, y))) {
-			buff.put(new PairHash(x, y), new XyColor(x, y, inColor));
+		if(!this.buff.checkKey(new PairHash(x, y).hashCode())) {
+			this.buff.put(new PairHash(x, y).hashCode(), new XyColor(x, y, this.getColor()));
+			
 		}
 	}
 	
+	/**
+	 * Gets the buff.
+	 *
+	 * @return the buff
+	 */
+	public Buffer getBuff() {
+		return this.buff;
+	}
+	
+	/**
+	 * Gets the size.
+	 *
+	 * @return the size
+	 */
 	public int getSize() {
 		return SIZE;
 	}
-	
-	//allt nedanför gammalkod.
-	
-//	public void setPosition(int x, int y) {
-//		board[x][y] = ME;
-//	}
-//	
-//	public int getPosition(int x, int y) {
-//		return board[x][y];
-//	}
-//	
-//	public int getSize() {
-//		return SIZE;
-//	}
-	
+		
 
 	//behandlar inkommande data, dvs : (x, y, color)
 	
+	/* (non-Javadoc)
+	 * @see java.util.Observer#update(java.util.Observable, java.lang.Object)
+	 */
 	@Override
 	public void update(Observable o, Object arg) {
-		this.indata = s.getData();
-		this.setIndata();
+		this.x = Integer.valueOf(s.getX());
+		this.y = Integer.valueOf(s.getY());
+		this.inColor = s.getColor();
+		this.saveIndata();
+		
+		setChanged();			    //call update i GamePanel/GUI.
+		notifyObservers();
 		
 	}
+	
+
 	
 	
 }

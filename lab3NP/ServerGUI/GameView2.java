@@ -1,33 +1,37 @@
+/*
+ * 
+ */
 package lab3NP.ServerGUI;
 
-import java.awt.Window;
-import java.util.Observable;
-import java.util.Observer;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-import java.awt.BorderLayout;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
-import javax.swing.JLabel;
-import java.awt.Canvas;
-import java.awt.Color;
+/**
+ * The Class GameView2.
+ */
 
-//behöver nog ej någon Observer.
-public class GameView2 implements Observer {
+public class GameView2 {
 
+	/** The Constant DEFAULT_SIZE. */
 	private final static int DEFAULT_SIZE = 10;
+	
+	/** The m. */
 	private GameModel m;
-	private GameControl c;
+	
+	/** The game grid panel. */
 	private GamePanel gameGridPanel;
+	
+	/** The frame. */
 	private JFrame frame;
 
 
 	/**
 	 * Create the application.
+	 *
+	 * @param m the m
 	 */
 	public GameView2(GameModel m) {
 		this.m = m;
@@ -55,16 +59,12 @@ public class GameView2 implements Observer {
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.pack();
 		frame.setSize(m.getSize() * gameGridPanel.getUNITSIZE() + 30,
-					  m.getSize() * gameGridPanel.getUNITSIZE() + 90); // Storlek på fönster
+					  m.getSize() * gameGridPanel.getUNITSIZE() + 30); // Storlek på fönster
 		frame.setVisible(true);
 		frame.add(panel);
 		
 	
 	}
 
-	@Override
-	public void update(Observable o, Object arg) {
-		// TODO Auto-generated method stub
-		
-	}
+
 }

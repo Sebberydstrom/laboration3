@@ -1,16 +1,20 @@
+/*
+ * 
+ */
 package lab3NP.ServerGUI;
 
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
-import java.awt.Point;
-
+/**
+ * The Class Buffer.
+ */
 public class Buffer {
 
 	
     /** The buffer. */
-    private Map<PairHash, Object> buff = Collections.synchronizedMap(new HashMap<PairHash, Object>());
+    private Map<Integer, Object> buff = Collections.synchronizedMap(new HashMap<Integer, Object>());
 
         
     /**
@@ -24,10 +28,10 @@ public class Buffer {
     /**
      * Put. Stores the data and the key.
      *
-     * @param cacheKey the cache key
+     * @param Key the key
      * @param value the value
      */
-    public void put(PairHash Key, Object value) {
+    public void put(Integer Key, Object value) {
         buff.put(Key, value);      
         
     }
@@ -35,10 +39,10 @@ public class Buffer {
     /**
      * Returns the stored data.
      *
-     * @param cacheKey 
+     * @param Key the key
      * @return object the stored xml data.
      */
-    public Object get(PairHash Key) {
+    public Object get(Integer Key) {
         return buff.get(Key);
     }
     
@@ -47,7 +51,7 @@ public class Buffer {
      *
      * @return the keyset
      */
-    public Set<PairHash> getKeyset() {
+    public Set<Integer> getKeyset() {
     	return buff.keySet();
     }
     
@@ -55,10 +59,10 @@ public class Buffer {
      * Check key. Returns true if this map
      * contains a mapping for the specified key.
      *
-     * @param key
+     * @param key the key
      * @return true, if successful
      */
-    public boolean checkKey(PairHash key) {
+    public boolean checkKey(Integer key) {
     	return buff.containsKey(key);
     }
 
@@ -67,7 +71,7 @@ public class Buffer {
      *
      * @param cacheKey the cache key
      */
-    public void clear(PairHash cacheKey) {
+    public void clear(Integer cacheKey) {
         buff.put(cacheKey, null);
     }
 

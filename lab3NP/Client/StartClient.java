@@ -1,12 +1,20 @@
+
 package lab3NP.Client;
 
 import java.io.IOException;
-import java.net.Inet6Address;
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 
+/**
+ * The Class StartClient.
+ */
 public class StartClient {
 	
+	/**
+	 * The main method.
+	 *
+	 * @param args the arguments
+	 * @throws IOException Signals that an I/O exception has occurred.
+	 */
 	public static void main(String[] args) throws IOException {
 		
 		String adress = "::1";
