@@ -1,7 +1,7 @@
 /*
  * 
  */
-package lab3NP.ServerGUI;
+package ServerGUI;
 
 import java.awt.Color;
 /**

@@ -1,7 +1,7 @@
 /*
  * 
  */
-package lab3NP.Client;
+package Client;
 
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;

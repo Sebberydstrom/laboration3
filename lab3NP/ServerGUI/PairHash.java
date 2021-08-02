@@ -1,7 +1,7 @@
 /*
  * 
  */
-package lab3NP.ServerGUI;
+package ServerGUI;
 
 // TODO: Auto-generated Javadoc
 /**

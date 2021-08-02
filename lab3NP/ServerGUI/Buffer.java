@@ -1,7 +1,7 @@
 /*
  * 
  */
-package lab3NP.ServerGUI;
+package ServerGUI;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -15,7 +15,8 @@ public class Buffer {
 	
     /** The buffer. */
     private Map<Integer, Object> buff = Collections.synchronizedMap(new HashMap<Integer, Object>());
-
+    private int lastKey;
+    private Object lastObject;
         
     /**
      * Instantiates a new simple cache manager.
@@ -32,15 +33,30 @@ public class Buffer {
      * @param value the value
      */
     public void put(Integer Key, Object value) {
-        buff.put(Key, value);      
+        buff.put(Key, value);  
+        lastKey = Key;
+        lastObject = value;
         
     }
+    
+    /**
+     * 
+     * @param Key
+     * @return value the XyColor Object.
+     */
+    public Object getLastObject(Integer Key) {
+    	if (Key == lastKey) {
+    		return lastObject;
+    	}
+    	return null;
+    }
+    
 
     /**
      * Returns the stored data.
      *
      * @param Key the key
-     * @return object the stored xml data.
+     * @return object the stored data.
      */
     public Object get(Integer Key) {
         return buff.get(Key);

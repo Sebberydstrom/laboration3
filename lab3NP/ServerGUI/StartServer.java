@@ -1,7 +1,7 @@
 /*
  * 
  */
-package lab3NP.ServerGUI;
+package ServerGUI;
 
 /**
  * The Class StartServer.
@@ -9,7 +9,7 @@ package lab3NP.ServerGUI;
 public class StartServer {
 	
 	/** The port. */
-	private static int port = 7777;
+	private static int port = 7123;
 	
 	/**
 	 * The main method.
@@ -19,12 +19,14 @@ public class StartServer {
 	 */
 	public static void main(String[] args) throws Exception {
 		
-
-		//Startar Server och GUI.
-		UDPServer s = new UDPServer(port);
-		GameModel m = new GameModel(s);
-		GamePanel g = new GamePanel(m);
-		GameView2 w = new GameView2(m);
+			//create a new thread for every new server that are to run.
+			//depending on input from args.
+			UDPServer s = new UDPServer(port);
+			GameModel m = new GameModel(s);
+			GamePanel g = new GamePanel(m);
+			GameView2 w = new GameView2(m);
+			
+	
 		
 			
 	}

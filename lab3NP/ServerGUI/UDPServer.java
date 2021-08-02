@@ -1,5 +1,4 @@
-
-package lab3NP.ServerGUI;
+package ServerGUI;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -61,18 +60,19 @@ public class UDPServer extends Observable implements Runnable {
 		
 		while(true) {
 			try {
-				 byte[] buf = new byte[16]; // är 16 st bytes.
+				 byte[] buf = new byte[32]; // är 16 st bytes.
 				 DatagramPacket packet = new DatagramPacket(buf, buf.length);  //datagrampacket to be received.
 			
 				 //blocks until a packet is received. - packet exist of a number of bytes/bytearray.
 				 udpSocket.receive(packet);
-				 
+				 System.out.println("loopar i UDPServer\n");
 				 BufferedInputStream buffer = null;
 				 buffer = new BufferedInputStream( new ByteArrayInputStream(packet.getData()) );
 				
 				 b = buffer.readAllBytes();
 				 setData(b);
 				 
+				 //Anropa model och exekvera det som behövs där.
 				 setChanged(); 		//call update i Model.
 				 notifyObservers();
 				 
@@ -109,7 +109,8 @@ public class UDPServer extends Observable implements Runnable {
 				break;
 			}	
 		}
-		this.X = X;	
+		this.X = X;
+		System.out.println(X);
 	}
 	
 	
@@ -136,6 +137,7 @@ public class UDPServer extends Observable implements Runnable {
 			}	
 		}
 		this.Y = Y;
+		System.out.println(Y);
 	}
 	
 	
@@ -155,6 +157,7 @@ public class UDPServer extends Observable implements Runnable {
 			}		
 		}
 		this.Color = Color;
+		System.out.println(Color);
 	}
 	
 	/**

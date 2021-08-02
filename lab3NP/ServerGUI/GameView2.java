@@ -1,13 +1,14 @@
 /*
  * 
  */
-package lab3NP.ServerGUI;
+package ServerGUI;
 
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 /**
  * The Class GameView2.
@@ -57,11 +58,13 @@ public class GameView2 {
 		
 		JFrame frame = new JFrame("Coordinate Grid");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		JScrollPane scroll = new JScrollPane(panel, JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		frame.pack();
 		frame.setSize(m.getSize() * gameGridPanel.getUNITSIZE() + 30,
 					  m.getSize() * gameGridPanel.getUNITSIZE() + 30); // Storlek på fönster
 		frame.setVisible(true);
-		frame.add(panel);
+		frame.add(scroll);
+		//frame.add(panel);
 		
 	
 	}

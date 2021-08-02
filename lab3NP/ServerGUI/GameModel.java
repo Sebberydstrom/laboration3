@@ -1,7 +1,7 @@
 /*
  * 
  */
-package lab3NP.ServerGUI;
+package ServerGUI;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -18,8 +18,9 @@ public class GameModel extends Observable implements Observer {
 	/** The Constant SIZE. */
 	private final static int SIZE = 201;
 	
-	/** The buff. */
-	private Buffer buff;
+	/** The buffer which stores the data for the different players
+	 *  identified by the color.*/
+	private Buffer buffRed, buffBlue, buffGreen, buffPink, buffBlack, buffGray, buffWhite, buffYellow;
 	
 	/** The in color. */
 	private String indata, inColor; // --(x, y, color)
@@ -39,7 +40,14 @@ public class GameModel extends Observable implements Observer {
 	public GameModel(UDPServer s) {
 		this.s = s;
 		this.s.addObserver(this);
-		this.buff = new Buffer();
+		this.buffRed = new Buffer();
+		this.buffBlue = new Buffer();
+		this.buffGreen = new Buffer();
+		this.buffPink = new Buffer();
+		this.buffBlack = new Buffer();
+		this.buffGray = new Buffer();
+		this.buffWhite = new Buffer();
+		this.buffYellow = new Buffer();
 		//this.board = new int[SIZE][SIZE];
 		
 	}
@@ -69,8 +77,8 @@ public class GameModel extends Observable implements Observer {
 	 * @return the color
 	 */
 	public Color getColor() {
-	
-		
+		//Checkt to see if the color is ok format.
+		System.out.println(this.inColor);
 		if(this.inColor != null) {
 			
 			switch(this.inColor) {
@@ -117,24 +125,92 @@ public class GameModel extends Observable implements Observer {
 	}
 	
 	/**
-	 * Save indata.
+	 * Save indata. Each player has a separate buffer.
 	 */
 	public void saveIndata() {
-		if(!this.buff.checkKey(new PairHash(x, y).hashCode())) {
-			this.buff.put(new PairHash(x, y).hashCode(), new XyColor(x, y, this.getColor()));
-			
+		if (this.getColor() == Color.red) {
+			if(!this.buffRed.checkKey(new PairHash(x, y).hashCode())) {
+				this.buffRed.put(new PairHash(x, y).hashCode(), new XyColor(x, y, this.getColor()));
+			}
+		}
+		if (this.getColor() == Color.blue) {
+			if(!this.buffBlue.checkKey(new PairHash(x, y).hashCode())) {
+				this.buffBlue.put(new PairHash(x, y).hashCode(), new XyColor(x, y, this.getColor()));
+			}
+		}
+		if (this.getColor() == Color.green) {
+			if(!this.buffGreen.checkKey(new PairHash(x, y).hashCode())) {
+				this.buffGreen.put(new PairHash(x, y).hashCode(), new XyColor(x, y, this.getColor()));
+			}
+		}
+		if (this.getColor() == Color.pink) {
+			if(!this.buffPink.checkKey(new PairHash(x, y).hashCode())) {
+				this.buffPink.put(new PairHash(x, y).hashCode(), new XyColor(x, y, this.getColor()));
+			}
+		}
+		if (this.getColor() == Color.black) {
+			if(!this.buffBlack.checkKey(new PairHash(x, y).hashCode())) {
+				this.buffBlack.put(new PairHash(x, y).hashCode(), new XyColor(x, y, this.getColor()));
+			}
+		}
+		if (this.getColor() == Color.gray) {
+			if(!this.buffGray.checkKey(new PairHash(x, y).hashCode())) {
+				this.buffGray.put(new PairHash(x, y).hashCode(), new XyColor(x, y, this.getColor()));
+			}
+		}
+		if (this.getColor() == Color.white) {
+			if(!this.buffWhite.checkKey(new PairHash(x, y).hashCode())) {
+				this.buffWhite.put(new PairHash(x, y).hashCode(), new XyColor(x, y, this.getColor()));
+			}
+		}
+		if (this.getColor() == Color.yellow) {
+			if(!this.buffYellow.checkKey(new PairHash(x, y).hashCode())) {
+				this.buffYellow.put(new PairHash(x, y).hashCode(), new XyColor(x, y, this.getColor()));
+			}
 		}
 	}
 	
+	
+	public Buffer getRed() {
+		return this.buffRed;
+	}
+	
+	public Buffer getBlue() {
+		return this.buffBlue;
+	}
+	
+	public Buffer getGreen() {
+		return this.buffGreen;
+	}
+	
+	public Buffer getPink() {
+		return this.buffPink;
+	}
+	
+	public Buffer getBlack() {
+		return this.buffBlack;
+	}
+	
+	public Buffer getGray() {
+		return this.buffGray;
+	}
+	
+	public Buffer getWhite() {
+		return this.buffWhite;
+	}
+	
+	public Buffer getYellow() {
+		return this.buffYellow;
+	}
 	/**
 	 * Gets the buff.
 	 *
 	 * @return the buff
 	 */
-	public Buffer getBuff() {
+	/*public Buffer getBuff() {
 		return this.buff;
 	}
-	
+	/
 	/**
 	 * Gets the size.
 	 *

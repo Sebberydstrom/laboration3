@@ -1,5 +1,5 @@
 
-package lab3NP.Client;
+package Client;
 
 import java.io.IOException;
 import java.net.InetAddress;
@@ -19,7 +19,7 @@ public class StartClient {
 		
 		String adress = "::1";
 		int port = 6666;
-		int destinationP = 7777;
+		int destinationP = 7123;
 		
 		UDPClient c = new UDPClient(adress, port, destinationP);
 		System.out.println("-- Running UDP Client at " + InetAddress.getLocalHost() + " --");
