@@ -23,8 +23,8 @@ public class StartServer {
 			//depending on input from args.
 			UDPServer s = new UDPServer(port);
 			GameModel m = new GameModel(s);
-			GamePanel g = new GamePanel(m);
-			GameView2 w = new GameView2(m);
+			new GamePanel(m);
+			new GameView2(m);
 			
 	
 		

@@ -22,7 +22,7 @@ public class Buffer {
      * Instantiates a new simple cache manager.
      */
     public Buffer() {
-    
+ 
     }
    
 
@@ -44,11 +44,10 @@ public class Buffer {
      * @param Key
      * @return value the XyColor Object.
      */
-    public Object getLastObject(Integer Key) {
-    	if (Key == lastKey) {
-    		return lastObject;
-    	}
-    	return null;
+    public Object getLastObject() {
+    	return lastObject;
+    	
+    	//return null;
     }
     
 
@@ -80,6 +79,8 @@ public class Buffer {
      */
     public boolean checkKey(Integer key) {
     	return buff.containsKey(key);
+
+    	//return buff.containsKey(key);
     }
 
     /**
@@ -96,6 +97,13 @@ public class Buffer {
      */
     public void clear() {
         buff.clear();
+    }
+    
+    /**
+     * Remove. Removes the mapping.
+     */
+    public void remove(int cachekey) {
+    	buff.remove(cachekey);
     }
     
     /**
